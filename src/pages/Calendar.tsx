@@ -74,14 +74,15 @@ const Calendar = () => {
                     }}>
                         <h2>Aniversariantes do mês</h2>
                         <ul>
-                            {monthBirthdays.map((person) => (
-                                <li key={person.id}>
-                                    {person.nome} - {new Date(person.data_nascimento).toLocaleDateString("pt-BR", {
-                                        day: "2-digit",
-                                        month: "2-digit",
-                                    })}
-                                </li>
-                            ))}
+                            {monthBirthdays.map((person) => {
+                                const [_, month, day] = person.data_nascimento.split("-");
+
+                                return (
+                                    <li key={person.id}>
+                                        {person.nome} - {day}/{month}
+                                    </li>
+                                );
+                            })}
                         </ul>
                     </div>
                 </div>
