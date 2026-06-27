@@ -70,8 +70,11 @@ const EditModal = ({ person, open, onClose }: EditModalProps) => {
                 .then(() => {
                     queryClient.invalidateQueries({ queryKey: ['personPhoto', person?.id] });
                 });
+            const photoElement = document.getElementById("personPhoto") as HTMLImageElement | null;
+            if (photoElement) {
+                photoElement.src = URL.createObjectURL(file);
+            }
         }
-        document.getElementById("personPhoto")!.src = URL.createObjectURL(file);
     }
     
     return (

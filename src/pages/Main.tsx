@@ -1,7 +1,7 @@
 import { useState } from "react"
-import Calendar from "./calendar"
 import People from "./People"
 import { authService } from "../services/authService"
+import Calendar from "./Calendar"
 
 type MenuItem = {
   label: string,
