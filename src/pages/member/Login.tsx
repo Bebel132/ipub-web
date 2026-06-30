@@ -1,7 +1,11 @@
-import { authService } from "../services/authService";
-import formatCpf from "../utils/formatCPF";
+import { useNavigate } from "react-router";
+import siteMap from "../../routes/siteMap";
+import { authService } from "../../services/authService";
+import formatCpf from "../../utils/formatCPF";
 
 const Login = () => {
+    const navigate = useNavigate();
+    
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -10,7 +14,7 @@ const Login = () => {
 
         authService.login(cpf, password)
             .then(() => {
-                window.location.reload();
+                navigate(siteMap.member.profile, { replace: true });
             })
             .catch(error => {
                 alert("Login failed: " + error.message);

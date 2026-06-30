@@ -6,6 +6,10 @@ export const personService = {
         return api.get('/pessoas')
             .then(response => response.data)
     },
+    getById: async (id: string) => {
+        return api.get(`/pessoas/${id}`)
+            .then(response => response.data)
+    },
     update: async (person: IPerson) => {
         return api.put(`/pessoas/${person.id}`, person)
             .then(response => response.data)
