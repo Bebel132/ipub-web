@@ -87,7 +87,7 @@ const Login = () => {
                     "center", 
                     zIndex: 9999 
                 }}>
-                    <div style={{ color: "#fff", fontSize: "1.5rem" }}>Entrando na sua conta...</div>
+                    <div style={{ color: "#fff", fontSize: "1.5rem" }}>Carregando...</div>
                 </div> 
             }
             {
