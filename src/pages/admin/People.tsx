@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query"
-import { personService } from "../services/personService"
-import { type IPerson } from "../interfaces/IPerson"
+import { personService } from "../../services/personService"
+import { type IPerson } from "../../interfaces/IPerson"
 import { useMemo, useState } from "react"
-import EditModal from "../modals/people/editModal"
-import NewModal from "../modals/people/newModal"
-import DeleteModal from "../modals/people/deleteModal"
+import EditModal from "../../components/modals/editModal"
+import NewModal from "../../components/modals/newModal"
+import DeleteModal from "../../components/modals/deleteModal"
 
 const People = () => {
     const [search, setSearch] = useState('')

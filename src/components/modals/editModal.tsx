@@ -1,5 +1,5 @@
 import { type IPerson } from "../../interfaces/IPerson";
-import EditForm from "../../components/forms/EditForm";
+import EditForm from "../forms/EditForm";
 
 interface EditModalProps {
     person?: IPerson;

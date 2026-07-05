@@ -1,8 +1,8 @@
 import FullCalendar from "@fullcalendar/react"
 import dayGridPlugin from '@fullcalendar/daygrid'
 import { useQuery } from "@tanstack/react-query"
-import type { IPerson } from "../interfaces/IPerson"
-import { personService } from "../services/personService"
+import type { IPerson } from "../../interfaces/IPerson"
+import { personService } from "../../services/personService"
 import { useMemo } from "react"
 import ptBrLocale from "@fullcalendar/core/locales/pt-br";
 

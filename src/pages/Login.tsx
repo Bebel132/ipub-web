@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
-import siteMap from "../../routes/siteMap";
-import { authService } from "../../services/authService";
-import formatCpf from "../../utils/formatCPF";
+import siteMap from "../routes/siteMap";
+import { authService } from "../services/authService";
+import formatCpf from "../utils/formatCPF";
 import toast from "react-hot-toast";
 import { useState } from "react";
 
@@ -19,7 +19,13 @@ const Login = () => {
 
         authService.login(cpf, password)
             .then(() => {
-                navigate(siteMap.member.profile, { replace: true });
+                authService.me().then(res => {
+                    if (res.is_admin) {
+                        navigate(siteMap.admin.main, { replace: true });
+                    } else {
+                        navigate(siteMap.member.profile, { replace: true });
+                    }
+                })
             })
             .catch(error => {
                 toast.error("Login failed: " + error.message);

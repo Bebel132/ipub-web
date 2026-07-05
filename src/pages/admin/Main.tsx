@@ -1,6 +1,6 @@
 import { useState } from "react"
 import People from "./People"
-import { authService } from "../services/authService"
+import { authService } from "../../services/authService"
 import Calendar from "./Calendar"
 
 type MenuItem = {

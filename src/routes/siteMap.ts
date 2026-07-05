@@ -6,10 +6,6 @@ export default {
         calendar: "/membro/calendario",
     },
     admin: {
-        login: "/admin/login",
-        dashboard: "/admin/dashboard",
-        members: "/admin/membros",
-        membersCards: "/admin/membros/carteirinhas",
-        calendar: "/admin/calendario",
+        main: "/admin/dashboard",
     }
 }
