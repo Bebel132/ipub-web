@@ -2,7 +2,6 @@ import { authService } from "../../services/authService";
 import { useQuery } from "@tanstack/react-query";
 import EditForm from "../../components/forms/EditForm";
 import MemberMenu from "../../components/MemberMenu";
-import { Toaster } from "react-hot-toast";
 
 const Profile = () => {
     const { data, isLoading } = useQuery({
@@ -20,7 +19,6 @@ const Profile = () => {
         }}>
             {isLoading ? (<p>carregando...</p>) : data && (
                 <>
-                    <Toaster position="top-center" />
                     <MemberMenu />
                     <div>
                         <h1>Perfil</h1>

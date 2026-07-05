@@ -11,6 +11,13 @@ export const authService = {
 
         return data;
     },
+    firstAcess: async (cpf: string, password: string) => {
+        const { data } = await api.post("/auth/first-access", {
+            cpf,
+            password,
+        });
+        return data;
+    },
     me: async () => {
         const { data } = await api.get("/auth/me");
         return data;
