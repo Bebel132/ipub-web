@@ -73,7 +73,13 @@ const EditForm = ({ person, onClose }: EditFormProps) => {
                 {isLoading ? (
                     <p>Carregando foto...</p>
                 ) : (
-                    <div style={{margin: "10px auto"}}>
+                    <div style={{
+                        margin: "10px auto",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                    }}>
                         <img 
                             id="personPhoto"
                             src={personPhoto ? personPhoto : `https://ui-avatars.com/api/?name=${encodeURIComponent(person!.nome)}&size=150&background=random`} 
@@ -86,6 +92,7 @@ const EditForm = ({ person, onClose }: EditFormProps) => {
                             }}
                             onClick={() => document.querySelector<HTMLInputElement>('input[type="file"]')?.click()}
                         />
+                        <p><i>clique na imagem para alterar a foto</i></p>
                     </div>
                 )}
                 <input type="file" accept="image/*" onChange={handlePhotoChange} style={{display: "none"}}/>
