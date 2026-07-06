@@ -11,7 +11,7 @@ const Login = () => {
     const [cpf, setCpf] = useState("");
     const navigate = useNavigate();
     
-    const handleSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoad(true);
 
@@ -19,7 +19,7 @@ const Login = () => {
         const parsedCpf = cpf.replace(/\D/g, '');
         const password = formData.get("password") as string;
 
-        authService.login(parsedCpf, password)
+        await authService.login(parsedCpf, password)
             .then(() => {
                 authService.me().then(res => {
                     if (res.is_admin) {
@@ -42,7 +42,7 @@ const Login = () => {
         setLoad(false);
     }
 
-    const handleSubmitFirstAccess = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmitFirstAccess = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoad(true);
 
@@ -50,7 +50,7 @@ const Login = () => {
         const parsedCpf = cpf.replace(/\D/g, '');
         const password = formData.get("password") as string;
 
-        authService.firstAcess(parsedCpf, password)
+        await authService.firstAcess(parsedCpf, password)
             .then(() => {
                 toast.success("Senha alterada com sucesso! Faça login novamente.");
                 setFirstAccess(false);
@@ -171,7 +171,7 @@ const Login = () => {
                                 color: "#2f5fff",
                                 textDecoration: "underline",
                                 cursor: "pointer",
-                                marginBottom: "2rem",
+                                marginBottom: "1.5rem",
                             }}
                         >
                             não tenho senha / redefinir senha
