@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import MemberMenu from "../../components/MemberMenu"
 import { authService } from "../../services/authService"
 import { cardService } from "../../services/cardService"
+import Loader from "../../components/Loading"
 
 const Card = () => {
     const { data: me } = useQuery({
@@ -28,7 +29,7 @@ const Card = () => {
         }}>
             <MemberMenu />
             <div>
-                {isLoading ? (<p>Carregando...</p>
+                {isLoading ? (<Loader />
                 ) : card ? (
                     <div
                         style={{

@@ -3,6 +3,7 @@ import type { IPerson } from "../../interfaces/IPerson";
 import { personService } from "../../services/personService";
 import { useMemo } from "react";
 import MemberMenu from "../../components/MemberMenu";
+import Loader from "../../components/Loading";
 
 const Calendar = () => {
     const { data, isLoading } =
@@ -82,7 +83,7 @@ const Calendar = () => {
             padding: "1rem",
         }}>
             {
-                isLoading ? <p>Carregando...</p> :
+                isLoading ? <Loader /> :
                 <>
                     <MemberMenu />
                     <div style={{ marginBottom: "1rem" }}>

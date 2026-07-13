@@ -2,6 +2,7 @@ import { authService } from "../../services/authService";
 import { useQuery } from "@tanstack/react-query";
 import EditForm from "../../components/forms/EditForm";
 import MemberMenu from "../../components/MemberMenu";
+import Loader from "../../components/Loading";
 
 const Profile = () => {
     const { data, isLoading } = useQuery({
@@ -17,7 +18,7 @@ const Profile = () => {
             alignItems: "center",
             backgroundColor: "#f0f0f0"
         }}>
-            {isLoading ? (<p>carregando...</p>) : data && (
+            {isLoading ? (<Loader />) : data && (
                 <>
                     <MemberMenu />
                     <div>
