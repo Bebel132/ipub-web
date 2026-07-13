@@ -3,8 +3,8 @@ export interface IPerson {
     nome: string;
     cpf: string;
     congregacao: string;
-    conjunto: string;
     data_nascimento: string;
+    data_batismo: string;
     idade: number;
     tem_foto: boolean;    
 }
@@ -13,6 +13,6 @@ export interface INewPerson {
     nome: string;
     cpf: string;
     congregacao: string;
-    conjunto: string;
     data_nascimento: string;
+    data_batismo: string;
 }

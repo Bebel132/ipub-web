@@ -4,6 +4,7 @@ import { authService } from "../services/authService";
 import formatCpf from "../utils/formatCPF";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import Loader from "../components/Loading";
 
 const Login = () => {
     const [load, setLoad] = useState(false);
@@ -73,22 +74,7 @@ const Login = () => {
             }}
         >
             { load && 
-                <div style={{ 
-                    position: "absolute", 
-                    top: 0, 
-                    left: 0, 
-                    width: "100%", 
-                    height: "100%", 
-                    backgroundColor: "rgba(0, 0, 0, 0.5)", 
-                    display: "flex", 
-                    justifyContent: 
-                    "center", 
-                    alignItems: 
-                    "center", 
-                    zIndex: 9999 
-                }}>
-                    <div style={{ color: "#fff", fontSize: "1.5rem" }}>Carregando...</div>
-                </div> 
+                <Loader />
             }
             {
                 firstAccess ? (

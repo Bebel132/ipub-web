@@ -32,7 +32,7 @@ const Card = () => {
                 ) : card ? (
                     <div
                         style={{
-                            width: "100vw",
+                            width: "160vw",
                             height: "100vh",
                             display: "flex",
                             justifyContent: "center",

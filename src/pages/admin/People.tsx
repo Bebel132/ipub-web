@@ -83,7 +83,6 @@ const People = () => {
                             <tr>
                                 <th>Nome</th>
                                 <th>Congregação</th>
-                                <th>Conjunto</th>
                                 <th>Data de Nascimento</th>
                                 <th>Idade</th>
                                 <th>CPF</th>
@@ -95,7 +94,6 @@ const People = () => {
                             <tr key={person.id}>
                                 <td>{person.nome}</td>
                                 <td>{person.congregacao}</td>
-                                <td>{person.conjunto}</td>
                                 <td>{person.data_nascimento}</td>
                                 <td>{person.idade} anos</td>
                                 <td>{person.cpf}</td>

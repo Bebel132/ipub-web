@@ -23,7 +23,6 @@ const EditModal = ({ person, open, onClose }: EditModalProps) => {
                 zIndex: 1000,
             }}>
                 <div style={{
-                    position: "relative",
                     backgroundColor: "#fff",
                     padding: "1rem",
                     paddingTop: "2rem",

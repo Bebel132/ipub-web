@@ -3,10 +3,6 @@ export const congregacoes = {
     CRISTO_REDENTOR: "Cristo Redentor",
     MARAPONGA: "Maraponga",
     BOM_JARDIM: "Bom Jardim",
-}
-
-export const conjuntos = {
-    SENHORAS: "Senhoras",
-    JOVENS: "Jovens",
-    SENHORES: "Senhores",
+    VINCENTE_PINZON: "Vicente Pinzón",
+    COUTO_FERNANDES: "Couto Fernandes",
 }
