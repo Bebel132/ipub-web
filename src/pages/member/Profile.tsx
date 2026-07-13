@@ -16,7 +16,8 @@ const Profile = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "#f0f0f0"
+            backgroundColor: "#f0f0f0",
+            padding: "0 1rem",
         }}>
             {isLoading ? (<Loader />) : data && (
                 <>
