@@ -5,8 +5,12 @@ import { useMemo, useState } from "react"
 import EditModal from "../../components/modals/editModal"
 import NewModal from "../../components/modals/newModal"
 import DeleteModal from "../../components/modals/deleteModal"
+import { cardService } from "../../services/cardService"
+import Loader from "../../components/Loading"
+import toast from "react-hot-toast"
 
 const People = () => {
+    const [ loading, setLoading ] = useState(false);
     const [search, setSearch] = useState('')
 
     const { data, isLoading } =
@@ -21,6 +25,7 @@ const People = () => {
     }, [data, search])
 
     const [selectedPerson, setSelectedPerson] = useState<IPerson | undefined>()
+    const [selectedIds, setSelectedIds] = useState<string[]>([])
 
     const [editOpen, setEditOpen] = useState(false)
     const handleCloseEdit = () => setEditOpen(false)
@@ -31,8 +36,46 @@ const People = () => {
     const [deleteOpen, setDeleteOpen] = useState(false)
     const handleCloseDelete = () => setDeleteOpen(false)
 
+    const selectId = (id: string) => {
+        if (selectedIds.includes(id)) {
+            setSelectedIds(selectedIds.filter((selectedId) => selectedId !== id))
+        } else {
+            setSelectedIds([...selectedIds, id])
+        }
+    }
+
+    const selectAll = () => {
+        if (selectedIds.length === people.length) {
+            setSelectedIds([])
+        } else {
+            setSelectedIds(people.map((person) => person.id))
+        }
+    }
+
+    const handlePrint = () => {
+        setLoading(true);
+        cardService.print(selectedIds)
+            .then((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "cartoes.pdf";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            })
+            .catch((err) => {
+                toast.error(err);
+            })
+            .finally(() => {
+                setLoading(false);
+            })
+    }
+
     return (
         <>
+            {loading && <Loader />}
             <EditModal person={selectedPerson} open={editOpen} onClose={handleCloseEdit} />
             <NewModal open={newOpen} onClose={handleCloseNew} />
             <DeleteModal person={selectedPerson} open={deleteOpen} onClose={handleCloseDelete} />
@@ -72,7 +115,23 @@ const People = () => {
                     width: "100%",
                     overflowX: "auto",
                     height: "calc(100vh - 200px)",
-                }}>
+                }}>    
+                    {selectedIds.length > 0 && (
+                        <button style={{
+                            backgroundColor: "#2f5fff",
+                            padding: "0.5rem 1rem",
+                            border: "none",
+                            borderRadius: "4px",
+                            cursor: "pointer",
+                            marginRight: "0.5rem",
+                            color: "#fff",
+                            marginBottom: "1rem",
+                        }}
+                        onClick={handlePrint}
+                        >
+                            Imprimir
+                        </button> 
+                    )}
                     <table>
                         <thead style={{
                             position: "sticky",
@@ -81,6 +140,7 @@ const People = () => {
                             backgroundColor: "#f0f0f0",
                         }}>
                             <tr>
+                                <th><input type="checkbox" onChange={selectAll} /></th>
                                 <th>Nome</th>
                                 <th>Congregação</th>
                                 <th>Data de Nascimento</th>
@@ -92,6 +152,9 @@ const People = () => {
                         <tbody>
                             {people.map((person) => (
                             <tr key={person.id}>
+                                <td style={{ width: "30px", textAlign: "center" }}>
+                                    <input type="checkbox" checked={selectedIds.includes(person.id)} onChange={() => selectId(person.id)} />
+                                </td>
                                 <td>{person.nome}</td>
                                 <td>{person.congregacao}</td>
                                 <td>{person.data_nascimento}</td>
