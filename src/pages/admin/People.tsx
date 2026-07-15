@@ -106,16 +106,12 @@ const People = () => {
                     }}
                     onClick={() => setNewOpen(true)}
                 >
-                    Novo irmão ➕
+                    Novo irmão
                 </button>
             </div>
             {
                 isLoading ? <p>Carregando...</p> :
-                <div style={{ 
-                    width: "100%",
-                    overflowX: "auto",
-                    height: "calc(100vh - 200px)",
-                }}>    
+                <>
                     {selectedIds.length > 0 && (
                         <button style={{
                             backgroundColor: "#2f5fff",
@@ -125,78 +121,88 @@ const People = () => {
                             cursor: "pointer",
                             marginRight: "0.5rem",
                             color: "#fff",
-                            marginBottom: "1rem",
+                            width: "fit-content"
                         }}
                         onClick={handlePrint}
                         >
                             Imprimir
                         </button> 
                     )}
-                    <table>
-                        <thead style={{
-                            position: "sticky",
-                            top: 0,
-                            zIndex: 1,
-                            backgroundColor: "#f0f0f0",
-                        }}>
-                            <tr>
-                                <th><input type="checkbox" onChange={selectAll} /></th>
-                                <th>Nome</th>
-                                <th>Congregação</th>
-                                <th>Data de Nascimento</th>
-                                <th>Idade</th>
-                                <th>CPF</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {people.map((person) => (
-                            <tr key={person.id}>
-                                <td style={{ width: "30px", textAlign: "center" }}>
-                                    <input type="checkbox" checked={selectedIds.includes(person.id)} onChange={() => selectId(person.id)} />
-                                </td>
-                                <td>{person.nome}</td>
-                                <td>{person.congregacao}</td>
-                                <td>{person.data_nascimento}</td>
-                                <td>{person.idade} anos</td>
-                                <td>{person.cpf}</td>
-                                <td style={{ width: "208px" }}>
-                                <div style={{ display: "flex", gap: "0.5rem" }}>
-                                    <button style={{
-                                        backgroundColor: "#78ff83",
-                                        padding: "0.5rem 1rem",
-                                        border: "none",
-                                        borderRadius: "4px",
-                                        cursor: "pointer",
-                                    }}
-                                    onClick={() => {
-                                        setSelectedPerson(person);
-                                        setEditOpen(true);
-                                    }}
-                                    >
-                                        Editar ✍
-                                    </button>
-                                    <button style={{
-                                            backgroundColor: "#ff8383",
-                                            padding: "0.5rem 1rem",
-                                            border: "none",
-                                            borderRadius: "4px",
-                                            cursor: "pointer",
-                                        }}
-                                        onClick={() => {
-                                            setSelectedPerson(person);
-                                            setDeleteOpen(true);
-                                        }}
-                                    >
-                                    Excluir ❌
-                                    </button>
-                                </div>
-                                </td>
-                            </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                    <div style={{ 
+                        width: "100%",
+                        overflowX: "auto",
+                        height: selectedIds.length > 0 ? "calc(100vh - 249px)" : "calc(100vh - 201px)",
+                    }}>
+                        <table>
+                            <thead style={{
+                                position: "sticky",
+                                top: 0,
+                                zIndex: 1,
+                                backgroundColor: "#f0f0f0",
+                            }}>
+                                <tr>
+                                    <th><input type="checkbox" onChange={selectAll} /></th>
+                                    <th>Nome</th>
+                                    <th>Congregação</th>
+                                    <th>Data de Nascimento</th>
+                                    <th>Idade</th>
+                                    <th>CPF</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {people.map((person) => (
+                                <tr key={person.id}>
+                                    <td style={{ width: "30px", textAlign: "center" }}>
+                                        <input type="checkbox" checked={selectedIds.includes(person.id)} onChange={() => selectId(person.id)} />
+                                    </td>
+                                    <td>{person.nome}</td>
+                                    <td>{person.congregacao}</td>
+                                    <td>{person.data_nascimento}</td>
+                                    <td>{person.idade} anos</td>
+                                    <td>{person.cpf}</td>
+                                    <td style={{ width: "150px", textAlign: "center" }}>
+                                        <div style={{ 
+                                            display: "flex", 
+                                            gap: "0.5rem",
+                                            width: "fit-content",
+                                        }}>
+                                            <button style={{
+                                                backgroundColor: "#78ff83",
+                                                padding: "0.5rem 1rem",
+                                                border: "none",
+                                                borderRadius: "4px",
+                                                cursor: "pointer",
+                                            }}
+                                            onClick={() => {
+                                                setSelectedPerson(person);
+                                                setEditOpen(true);
+                                            }}
+                                            >
+                                                Editar
+                                            </button>
+                                            <button style={{
+                                                    backgroundColor: "#ff8383",
+                                                    padding: "0.5rem 1rem",
+                                                    border: "none",
+                                                    borderRadius: "4px",
+                                                    cursor: "pointer",
+                                                }}
+                                                onClick={() => {
+                                                    setSelectedPerson(person);
+                                                    setDeleteOpen(true);
+                                                }}
+                                            >
+                                            Excluir
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </>
             }
         </>
     )

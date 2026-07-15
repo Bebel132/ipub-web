@@ -26,7 +26,7 @@ api.interceptors.response.use(
             !error.config.url?.includes("/auth/login")
         ) {
             localStorage.removeItem("access_token");
-            window.location.href = "/login";
+            window.location.href = "/#/membro/login";
         }
         return Promise.reject(error);
     }
